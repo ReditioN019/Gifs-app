@@ -1,13 +1,22 @@
-import { GifItem } from './GifItem';
-import { useFetchGifs } from '../hooks/useFetchGifs';
+import { GifItem } from '../GifItem';
+import { useFetchGifs } from '../../hooks/useFetchGifs';
 import { MdCleaningServices } from 'react-icons/md';
 
 export const GifCard = ({ category, setCategories }) => {
     
     const { images, isLoading } = useFetchGifs( category );   
 
-    const handleClick = () => setCategories([])
-    
+    const handleClick = () => {
+        setCategories(item => {
+            //creo un nuevo arreglo que no posea el elemento a eliminar
+            const elementoAEliminar = item.filter( data => (
+                data.toLowerCase() !== category.toLowerCase()
+            ));
+            
+            //Seteo el nuevo arreglo sin elemento borrado
+            return elementoAEliminar;
+        })
+    }
    
     return (
         <>
@@ -19,7 +28,7 @@ export const GifCard = ({ category, setCategories }) => {
                     onClick={handleClick}
                 >
                     <MdCleaningServices color='white' size='1.1rem' /> 
-                    <span className="ml-3">Limpiar</span> 
+                    <span className="ml-3">Quitar</span> 
                 </button>
             </div>
             

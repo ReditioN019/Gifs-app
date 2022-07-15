@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { AddCategory, GifCard} from "./components";
 
-
 export const App = () => {
 
     const [categories, setCategories] = useState([]);
@@ -21,8 +20,7 @@ export const App = () => {
     return (
         <>
             <h1>Aplicación de Gifs</h1>
-
-
+             
             <AddCategory  
                 newCategory={ addCategory }
             />
