@@ -21,7 +21,7 @@ export const useFetchGifs = ( category ) => {
 
     return {
         images, //envío el array de imagenes
-        isLoading
+        isLoading,
     }
 }
 

@@ -2,6 +2,5 @@
 //orden alfabetico
 
 export * from './AddCategory';
-// export * from './GifCard';
-export {GifCard} from './gifCard';
+export {GifCard} from './gifScreen';
 export * from './GifItem';
