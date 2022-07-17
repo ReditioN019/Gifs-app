@@ -6,12 +6,14 @@ import { getGifs } from "../helpers/getGifs";
 export const useFetchGifs = ( category ) => {
     
     const [images, setImages] = useState([]);
-    const [isLoading, setIsLoading] = useState(true); 
+    const [loading, setLoading] = useState(true); 
         
     const getImages = async() => {
         const newImages = await getGifs(category);
-        setImages(newImages);
-        setIsLoading(false); //aqui ya cargaron las imagenes
+        setTimeout(() => {
+            setImages(newImages);
+            setLoading(false); //aqui ya cargaron las imagenes  
+        }, 1000);
     }
 
     useEffect(() => {
@@ -21,7 +23,7 @@ export const useFetchGifs = ( category ) => {
 
     return {
         images, //envío el array de imagenes
-        isLoading,
+        loading,
     }
 }
 

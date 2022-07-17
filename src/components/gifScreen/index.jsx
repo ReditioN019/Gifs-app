@@ -1,11 +1,12 @@
 import { GifItem } from './GifItem';
 import { useFetchGifs } from '../../hooks/useFetchGifs';
 import { BtnRemoveGifs } from './BtnRemoveGifs';
+import { Loading } from './Loading';
 
 
 export const GifCard = ({ category, setCategories }) => {
     
-    const { images, isLoading } = useFetchGifs( category ); 
+    const { images, loading } = useFetchGifs( category ); 
    
     return (
         <>
@@ -19,7 +20,7 @@ export const GifCard = ({ category, setCategories }) => {
             
             
             {
-                isLoading && <h2>Cargando...</h2>
+                loading && <Loading loading={loading}/>
             }
             
             
