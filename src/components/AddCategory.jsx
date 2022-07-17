@@ -4,7 +4,15 @@ export const AddCategory = ({ newCategory }) => {
     
     const [inputValue, setInputValue] = useState('');
     
-    const handleChange = ({ target }) => setInputValue(target.value)
+    const handleChange = ({ target }) => {
+
+        //restringe caracteres especiales en el input. (Solo letras, numeros y espacios)
+        let dataInput = new RegExp(/^[A-Za-z0-9\s]+$/g);
+        let res  = dataInput.test(target.value)
+        
+        if(res || target.value === '') setInputValue(target.value)
+        
+    }
      
     const handleSubmit = (e) => {
         e.preventDefault();
