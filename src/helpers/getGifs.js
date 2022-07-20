@@ -5,7 +5,10 @@ import Swal from 'sweetalert2';
 export const getGifs = async (category, setLoading) => {
 
     try {
-        const url = `https://api.giphy.com/v1/gifs/search?api_key=mepMPXpp1J5vvA6ijPABvglOJUX51p4v&q=${category}&limit=20`;
+        const numRandom = Math.floor((Math.random() * (50-0)) +0)
+        const url = `
+            https://api.giphy.com/v1/gifs/search?api_key=mepMPXpp1J5vvA6ijPABvglOJUX51p4v&q=${category}&limit=15&rating=r&offset=${numRandom}
+        `;
         const resp = await fetch(url);
         const { data } = await resp.json();
 
@@ -39,5 +42,4 @@ export const getGifs = async (category, setLoading) => {
     finally{
         setLoading(false)
     }
-
 }  

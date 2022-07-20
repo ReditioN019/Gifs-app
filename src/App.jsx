@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { BtnUpPage } from './helpers/BtnUpPage';
+import { BtnUpPage } from './tools/BtnUpPage';
 import { GifCard, SearchInput } from './components/index'
 
 export const App = () => {
@@ -16,9 +16,7 @@ export const App = () => {
         //Si la nueva categoria NO existe dentro del array, se agrega
         if (!existCategory) setCategories([inputValue, ...categories]);
     }
-
-   
-
+      
     return (
         <>
             <div className="container mx-auto sm:px-20">
