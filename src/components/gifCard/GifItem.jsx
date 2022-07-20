@@ -1,12 +1,10 @@
 import { saveAs } from 'file-saver'
 import Swal from 'sweetalert2';
-import { FaDownload } from 'react-icons/Fa';
-import { AiOutlineWhatsApp } from 'react-icons/Ai';
-
+import { AiOutlineLink, AiOutlineDownload } from 'react-icons/Ai';
 
 export const GifItem = ({ title, url, id }) => {
 
-    const handleDownload = (url ) => {
+    const handleDownload = () => {
         Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -23,22 +21,12 @@ export const GifItem = ({ title, url, id }) => {
 
         Swal.fire({
             title: '¡Copiado al portapapeles!',
-            text: 'Pega el Link en whatssap y comparte el gif',
+            text: 'Puedes compartir el gif donde quieras',
             imageUrl: urlWsp,
             imageWidth: 400,
             imageHeight: 200,
             imageAlt: title,
-            showDenyButton: true,
-            denyButtonText: `Ir a whatssap`
-        }).then((result) => {
-            if (result.isDenied) {
-                window.open(
-                    'https://wa.me',
-                    '_blank' 
-                );
-            }
-        })
-        
+        });      
     }
 
     return (
@@ -50,15 +38,15 @@ export const GifItem = ({ title, url, id }) => {
             <div>
                 <p className="text-base">{title}</p>
                 <button className="mx-auto mb-5 animate-bounce grid grid-cols-2 gap-3" >
-                    <FaDownload
-                        color={'red'}
-                        size={20}
-                        onClick={() => handleDownload(url)}
-                    />
-                    <AiOutlineWhatsApp 
-                        onClick={handleCopyClipboard}
+                    <AiOutlineDownload
                         color={'#3EC70B'}
-                        size={20}
+                        size={25}
+                        onClick={handleDownload}
+                    />
+                    <AiOutlineLink 
+                        size={25}
+                        color={'#3EC70B'}
+                        onClick={handleCopyClipboard}
                     />
                 </button>
             </div>
