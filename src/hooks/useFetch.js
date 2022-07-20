@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { getGifs } from "../helpers/getGifs";
 
-// logica de cargar y manejar las imagenes traidas de la api de giphy
-
 export const useFetch = ( category) => {
     
     const [images, setImages] = useState([]);
@@ -25,8 +23,6 @@ export const useFetch = ( category) => {
     useEffect(() => {
         getImages();
     }, []);
-
-
 
     return { images, loading, errorSearch }
 }

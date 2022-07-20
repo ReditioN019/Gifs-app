@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useFetch } from '../../hooks/useFetch';
 import { BtnRemoveGifs } from './BtnRemoveGifs';
+import { GifItem } from './GifItem';
 import { Loading } from './Loading';
 
 export const GifCard = ({ category, setCategories, categories }) => {
@@ -9,13 +10,12 @@ export const GifCard = ({ category, setCategories, categories }) => {
 
     useEffect(() => {
         if(errorSearch){
-            console.log('Categoria nueva: ', category);
             const categoriasCorrectas = categories.filter( item => (
                 item !== category
             ))
             setCategories(categoriasCorrectas)
         }
-    }, [errorSearch])
+    }, [])
     
 
     return (
@@ -24,7 +24,7 @@ export const GifCard = ({ category, setCategories, categories }) => {
                 loading ?
                     <Loading loading={loading} />
                     :
-                    !errorSearch &&
+                    !errorSearch && //despues del loading, si no existe un error en la búsqueda...
                     <>
                         <div className="flex justify-between items-center">
                             <h3>{category.toUpperCase()}</h3>
@@ -38,15 +38,10 @@ export const GifCard = ({ category, setCategories, categories }) => {
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
                             {
                                 images.map(img => (
-                                    <div className="mx-auto overflow-hidden rounded-lg bg-slate-600 shadow-lg shadow-[#070f11]"
+                                    <GifItem 
                                         key={img.id}
-                                    >
-                                        <img
-                                            src={img.url}
-                                            alt={img.title}
-                                        />
-                                        <p>{img.title}</p>
-                                    </div>
+                                        {...img} //le envío todos los elementos que tiene img
+                                    />
                                 ))
                             }
                         </div>
