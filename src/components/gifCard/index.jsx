@@ -13,9 +13,10 @@ export const GifCard = ({ category, setCategories, categories }) => {
             const categoriasCorrectas = categories.filter( item => (
                 item !== category
             ))
+            console.log("categorias editadas: ", categoriasCorrectas)
             setCategories(categoriasCorrectas)
         }
-    }, [])
+    }, [category]);
     
 
     return (

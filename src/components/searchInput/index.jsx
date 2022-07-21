@@ -1,37 +1,26 @@
-import { useState } from "react";
-
+import { useForm } from "../../hooks/useForm";
 
 export const SearchInput = ({ addCategory, setCategories }) => {
 
-    const [inputValue, setInputValue] = useState('');
-
-    //Actualización del input de búsqueda
-    const handleChange = ({ target }) => {
-
-        //restringe caracteres especiales en el input. (Solo letras, numeros y espacios)
-        let dataInput = new RegExp(/^[A-Za-z0-9\s]+$/g);
-        let res = dataInput.test(target.value)
-
-        if ((res || target.value === '') && target.value.length < 20) {
-            setInputValue(target.value)
-        }
-    }
+    const { inputs, handleChange, handleReset, inputSearch } = useForm({ 
+        inputSearch: ''
+    });
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         //valida que tenga al menos 2 caracteres
-        if (inputValue.trim().length < 2) return;
+        if (inputSearch.trim().length < 2) return;
 
         //envío la categoria al padre.
-        addCategory(inputValue.trim());
-        setInputValue(''); //limpio input
+        addCategory(inputSearch.trim());
+        handleReset();
     }
 
 
     const handleCleanAll = () => {
         setCategories([]);
-        setInputValue('');
+        handleReset();
     }
 
     return (
@@ -40,7 +29,8 @@ export const SearchInput = ({ addCategory, setCategories }) => {
                 <input
                     type="text"
                     placeholder="Buscar Gifs"
-                    value={inputValue}
+                    value={inputSearch}
+                    name='inputSearch'
                     onChange={handleChange}
                 />
             </form>
@@ -54,9 +44,11 @@ export const SearchInput = ({ addCategory, setCategories }) => {
                     Limpiar Todo
                 </button>
             </div>
+
+
+
+
+
         </>
-
-
-
     )
 }

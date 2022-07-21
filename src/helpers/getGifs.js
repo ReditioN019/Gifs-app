@@ -23,15 +23,11 @@ export const getGifs = async (category, setLoading) => {
             return false;
         }
 
-        console.log("Dtaa: ", data)
-
         const gifs = data.map(item => ({
             id: item.id,
             title: item.title,
             url: item.images.downsized_medium.url
         }));
-
-
 
         return gifs
 
