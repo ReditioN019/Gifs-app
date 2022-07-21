@@ -11,7 +11,7 @@ export const useForm = (initialState = {}) => {
         //restringe caracteres especiales en el input. (Solo letras, numeros y espacios)
         let dataInput = new RegExp(/^[A-Za-z0-9\s]+$/g);
         let res = dataInput.test(value)
-
+        
         if ((res || value === '') && value.length < 20) {
             setInputs( state => ({
                 ...state,

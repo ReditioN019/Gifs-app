@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 
 //! Para algo más complejo, axios es mejor
 
-export const getGifs = async (category, setLoading) => {
+export const getGifs = async (category) => {
 
     try {
         const numRandom = Math.floor((Math.random() * (50-0)) +0);
@@ -38,8 +38,5 @@ export const getGifs = async (category, setLoading) => {
             text: `Error de servidor`,
             icon: "error",
         });
-    }
-    finally{
-        setLoading(false)
     }
 }  

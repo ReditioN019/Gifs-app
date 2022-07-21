@@ -1,4 +1,4 @@
-import { useForm } from "../../hooks/useForm";
+import { useForm } from "../../hooks";
 
 export const SearchInput = ({ addCategory, setCategories }) => {
 
@@ -8,9 +8,6 @@ export const SearchInput = ({ addCategory, setCategories }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        //valida que tenga al menos 2 caracteres
-        if (inputSearch.trim().length < 2) return;
 
         //envío la categoria al padre.
         addCategory(inputSearch.trim());

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useFetch } from '../../hooks/useFetch';
+import { useFetch } from '../../hooks';
 import { BtnRemoveGifs } from './BtnRemoveGifs';
 import { GifItem } from './GifItem';
 import { Loading } from './Loading';
