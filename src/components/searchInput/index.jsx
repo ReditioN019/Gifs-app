@@ -1,8 +1,8 @@
 import { useForm } from "../../hooks";
 
-export const SearchInput = ({ addCategory, setCategories }) => {
+export const SearchInput = ({ handleNewCategory, handleRemoveAllCategories }) => {
 
-    const { inputs, handleChange, handleReset, inputSearch } = useForm({ 
+    const { handleChange, handleReset, inputSearch } = useForm({ 
         inputSearch: ''
     });
 
@@ -10,19 +10,18 @@ export const SearchInput = ({ addCategory, setCategories }) => {
         e.preventDefault();
 
         //envío la categoria al padre.
-        addCategory(inputSearch.trim());
+        handleNewCategory(inputSearch.trim());
         handleReset();
     }
 
-
     const handleCleanAll = () => {
-        setCategories([]);
+        handleRemoveAllCategories();
         handleReset();
     }
 
     return (
         <>
-            <form onSubmit={handleSubmit} className="flex justify-center">
+            <form onSubmit={ handleSubmit } className="flex justify-center">
                 <input
                     type="text"
                     placeholder="Buscar Gifs"

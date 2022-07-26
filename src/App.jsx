@@ -1,20 +1,39 @@
-import { useState } from "react"
+import { useReducer } from "react"
 import { BtnUpPage } from './tools/BtnUpPage';
 import { GifCard, SearchInput } from './components/index'
+import { gifAppReducer } from "./helpers/gifAppReducer";
 
 export const App = () => {
 
-    const [categories, setCategories] = useState([]);
+    const [categorias, dispatch] = useReducer(gifAppReducer, [])
 
-    const addCategory = inputValue => {
 
-        //Compruebo que la nueva categoría no exista en el array
-        const existCategory = categories.some(cat => (
+    const handleNewCategory = inputValue => {
+        //Comprueba que la nueva categoría no exista en el array
+        const existCategory = categorias.some(cat => (
             cat.toLowerCase() === inputValue.toLowerCase()
         ));
 
         //Si la nueva categoria NO existe dentro del array, se agrega
-        if (!existCategory) setCategories([inputValue, ...categories]);
+        if (!existCategory) {
+            dispatch({
+                type: 'Add Category',
+                payload: inputValue
+            });
+        }  
+    }
+
+    const handldeRemoveCategory = category => {
+        dispatch({
+            type: 'Remove Category',
+            payload: category
+        });
+    }
+
+    const handleRemoveAllCategories = () => {
+        dispatch({
+            type: 'Remove All Categories'
+        });
     }
 
     return (
@@ -22,29 +41,18 @@ export const App = () => {
             <div className="container mx-auto sm:px-20">
                 <h1>Aplicación de Gifs</h1>
 
-
                 <SearchInput
-                    addCategory={addCategory}
-                    categories={categories}
-                    setCategories={setCategories}
+                    handleNewCategory={handleNewCategory}
+                    categories={categorias}
+                    handleRemoveAllCategories={handleRemoveAllCategories}
                 />
 
-{/* {
-                categories.map(item => (
-                    <ul key={item}>
-                        <li><a href="">{item}</a></li>
-                    </ul>
-                ))
-            } */}
-
-
                 {
-                    categories.map(item => (
+                    categorias.map((item) => (
                         <GifCard
                             key={item}
                             category={item}
-                            categories={categories}
-                            setCategories={setCategories}
+                            handldeRemoveCategory={item => handldeRemoveCategory(item)}
                         />
                     ))
                 }
@@ -52,7 +60,6 @@ export const App = () => {
 
 
             <BtnUpPage />
-
         </>
     )
 }
