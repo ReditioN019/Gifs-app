@@ -1,6 +1,10 @@
+import { useContext } from 'react';
 import { MdCleaningServices } from 'react-icons/md';
+import { GifContext } from '../../context/GifContext';
 
-export const BtnRemoveGifs = ({ category, handldeRemoveCategory}) => {
+export const BtnRemoveGifs = ({ category}) => {
+
+    const { handldeRemoveCategory } = useContext( GifContext );
 
     return (
         <button

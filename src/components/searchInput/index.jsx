@@ -1,15 +1,20 @@
-import { useForm } from "../../hooks";
+import { useState } from "react";
+import { useContext } from "react";
+import { GifContext } from "../../context/GifContext";
+import { useFetch, useForm } from "../../hooks";
 
-export const SearchInput = ({ handleNewCategory, handleRemoveAllCategories }) => {
+export const SearchInput = () => {
 
     const { handleChange, handleReset, inputSearch } = useForm({ 
         inputSearch: ''
     });
 
+    const {handleNewCategory, handleRemoveAllCategories } = useContext( GifContext );
+
+    
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        //envío la categoria al padre.
         handleNewCategory(inputSearch.trim());
         handleReset();
     }

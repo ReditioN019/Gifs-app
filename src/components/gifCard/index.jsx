@@ -1,12 +1,18 @@
+import { useEffect } from 'react';
+import { useContext } from 'react';
+import { GifContext } from '../../context/GifContext';
 import { useFetch } from '../../hooks';
 import { BtnRemoveGifs } from './BtnRemoveGifs';
 import { GifItem } from './GifItem';
 import { Loading } from './Loading';
 
-export const GifCard = ({ category, handldeRemoveCategory }) => {
+export const GifCard = ({ categoria }) => {
 
-    const { images, loading, errorSearch } = useFetch(category);
+    // const { images, loading, errorSearch } = useContext( GifContext );
 
+    const { images, loading, errorSearch } = useFetch(categoria);
+
+    
     return (
         <>
             {
@@ -16,10 +22,9 @@ export const GifCard = ({ category, handldeRemoveCategory }) => {
                     !errorSearch && //despues del loading, si no existe un error en la búsqueda...
                     <>
                         <div className="flex justify-between items-center">
-                            <h3>{category.toUpperCase()}</h3>
+                            <h3>{categoria.toUpperCase()}</h3>
                             <BtnRemoveGifs
-                                category={category}
-                                handldeRemoveCategory={handldeRemoveCategory}
+                                category={categoria}
                             />
                         </div>
 

@@ -15,5 +15,4 @@ export const gifAppReducer = (initialState = [], action) => {
         default:
             return initialState;
     }
-
 }
